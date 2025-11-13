@@ -3,10 +3,35 @@
     height: 400px;
 }
 
-#carrusel-1 {
+h2 {
+    text-align: center;
+    margin: 20px 0px 20px 0px;
+}
+
+#carrusel {
     text-align: center;
 }
 
 img {
-    margin-right: 30px;
+    border-radius: 200px;
+    margin-bottom: 10px;
 }
+
+nav {
+    background-color: green;
+}
+
+.link, .btn {
+    color: white;
+}
+
+#caja-boton-next, #caja-boton-prev{
+    width: 100px;
+}
+
+.contenedor_artista {
+    width: 400px;
+    margin-right: 20px;
+
+}
+
