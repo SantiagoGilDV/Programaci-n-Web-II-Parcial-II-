@@ -32,9 +32,9 @@ $artista = $result->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <title><?php echo $artista['Nombre_Artistico']; ?></title>
-    <link rel="icon" href="./Spotify_icon.svg.png" type="image/png">
+    <link rel="icon" href="./Img/Spotify_icon.svg.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./css/artist.css">
 </head>
 
 <body>
@@ -54,20 +54,18 @@ $artista = $result->fetch_assoc();
                             <a class="link nav-link" aria-current="page" href="#">Home</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" />
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    <img id="logo" class="d-flex" role="search" src="./Img/spotify_black.png" alt="">
+                    
                 </div>
             </div>
         </nav>
     </header>
     <main>
-    <div class="container mt-5">
+    <div id="contenedor_Art">
     <a href="index.php" class="btn btn-secondary mb-3 " id ="boton"> Volver</a>
 
-    <div class="card p-4">
-        <h1 class="text-center"><?php echo $artista['Nombre_Artistico']; ?></h1>
+    <div id ="card"class="card p-4">
+        <h2 class="text-center"><?php echo $artista['Nombre_Artistico']; ?></h2>
 
         <div class="text-center">
             <img src="<?php echo $artista['Imagen']; ?>" class="img-fluid rounded" width="300">

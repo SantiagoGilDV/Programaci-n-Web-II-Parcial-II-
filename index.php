@@ -18,10 +18,10 @@ if ($conn->connect_error) {
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mus</title>
-    <link rel="icon" href="./Spotify_icon.svg.png" type="image/png">
+    <title>Musync</title>
+    <link rel="icon" href="./Img/Spotify_icon.svg.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
@@ -41,6 +41,7 @@ if ($conn->connect_error) {
                             <a class="link nav-link" aria-current="page" href="#">Home</a>
                         </li>
                     </ul>
+                    <img id="logo" class="d-flex" role="search" src="./Img/spotify_black.png" alt="">
                     
                 </div>
             </div>

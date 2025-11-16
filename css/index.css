@@ -2,7 +2,11 @@ main{
     background-color: #121212;
 }
 
-
+#logo{
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
 #cont_Art{
     padding-top: 40px;
 }
@@ -44,19 +48,6 @@ nav {
     width: 100px;
 }
 
-.contenedor_artista {
-    width: 400px;
-    margin-right: 20px;
-
-}
-#boton{
-    background-color: #1abc54;
-    transition: 3;
-}
-#boton:hover{
-    background-color: gray;
-   
-}
 #link_Artist h3:hover{
     color: gray;
    
