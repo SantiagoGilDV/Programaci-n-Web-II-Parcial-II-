@@ -219,11 +219,20 @@ if ($conn->connect_error) {
         </div>
 
     </main>
-    <footer class="text-center">
-        <div class="card-body">
-            <h3 class="card-title">©Todos los derechos reservados 2025</h3>
-        </div>
-    </footer>
+    <?php
+$footer = $conn->query("SELECT * FROM footer_info LIMIT 1")->fetch_assoc();
+?>
+
+<footer>
+    <div class="container text-center">
+
+        <p >
+            <?php echo $footer['Texto']; ?>
+        </p>
+        <p >Contacto: <?php echo $footer['Email']; ?></p>
+
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
