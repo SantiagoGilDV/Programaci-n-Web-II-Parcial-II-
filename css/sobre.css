@@ -1,0 +1,26 @@
+body {
+    background-color: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+main {
+    padding: 50px;
+    text-align: center;
+}
+
+h2 {
+    color: #1abc54;
+    margin-bottom: 30px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: white;
+}
+
+footer {
+    background-color: #1abc54;
+    padding: 25px 0px 25px 0px;
+}

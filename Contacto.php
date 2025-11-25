@@ -1,44 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musynf</title>
+    <title>Contacto - Musynf</title>
+
     <link rel="icon" href="./Img/Spotify_icon.svg.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="./css/contacto.css">
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-green">
-            <div id="menu-nav" class="container-fluid">
-                <a class="link navbar-brand" href="index.php">
-                    <h1>Musynf</h1>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="link nav-link" aria-current="page" href="index.php">Home</a>
-                        </li>
-                    </ul>
-                    <img id="logo" class="d-flex" role="search" src="./Img/spotify_black.png" alt="">
-                </div>
-            </div>
-        </nav>
-    </header>
-    <main></main>
-    <footer class="text-center">
-        <div class="card-body">
-            <h3 class="card-title">©Todos los derechos reservados 2025</h3>
-        </div>
-    </footer>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
 
+ <?php
+session_start(); // necesario para mostrar el nombre
+?>
+
+<header>
+    <nav class="navbar navbar-expand-lg" style="background-color: #1abc54;">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+
+            <!-- Nombre del sitio -->
+            <a class="navbar-brand d-flex align-items-center" href="index.php">
+                <img src="./Img/spotify_black.png" width="45" style="margin-right:10px;">
+                <h1 class="m-0" style="font-size:30px;">Musynf</h1>
+            </a>
+
+            <!-- Nombre del usuario -->
+            <span class="text-white fw-bold">
+                <?php 
+                    if (isset($_SESSION['Nombre_Usuario'])) {
+                        echo "Hola, " . htmlspecialchars($_SESSION['Nombre_Usuario']);
+                    } else {
+                        echo "Invitado";
+                    }
+                ?>
+            </span>
+
+        </div>
+    </nav>
+</header>
+
+
+    <main class="main-center">
+        <div class="contact-container">
+            <h2>Formulario de Contacto</h2>
+
+            <form action="procesar_contacto.php" method="POST">
+
+                <label class="form-label">Nombre completo</label>
+                <input type="text" class="form-control" name="nombre" required>
+
+                <label class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" name="email" required>
+
+                <label class="form-label">Edad</label>
+                <input type="number" class="form-control" name="edad" min="1" max="120" required>
+
+                <label class="form-label">Asunto</label>
+                <select class="form-select" name="asunto" required>
+                    <option value="">Seleccione...</option>
+                    <option value="consulta">Consulta</option>
+                    <option value="sugerencia">Sugerencia</option>
+                    <option value="reclamo">Reclamo</option>
+                </select>
+
+                <label class="form-label">Mensaje</label>
+                <textarea class="form-control" name="mensaje" rows="4" required></textarea>
+
+                <button class="btn-submit mt-3">Enviar</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>

@@ -7,23 +7,28 @@
 </head>
 <body>
 
-<h2>Iniciar sesión</h2>
+    <div class="login-container">
 
-<?php if (isset($_GET['error'])) echo "<p style='color:red;'>".$_GET['error']."</p>"; ?>
+        <h2>Iniciar Sesión</h2>
 
-<form method="POST" action="index.php">
-    <label>Usuario:</label>
-    <input type="text" name="Nombre_Usuario" required>
+        <?php if (isset($_GET['error'])): ?>
+            <p class="error-msg"><?php echo $_GET['error']; ?></p>
+        <?php endif; ?>
 
-    <br><br>
+        <form method="POST" action="index.php">
+            
+            <label>Usuario:</label>
+            <input type="text" name="Nombre_Usuario" required>
 
-    <label>Contraseña:</label>
-    <input type="password" name="Contrasenia" required>
+            <label>Contraseña:</label>
+            <input type="password" name="Contrasenia" required>
 
-    <br><br>
+            <button type="submit" name="login">Ingresar</button>
 
-    <button type="submit" name="login">Ingresar</button>
-</form>
+        </form>
+
+    </div>
 
 </body>
 </html>
+

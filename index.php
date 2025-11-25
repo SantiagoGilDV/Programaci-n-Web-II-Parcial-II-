@@ -76,15 +76,20 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
     <nav class="navbar navbar-expand-lg" style="background-color: <?php echo $conf['Color_Primario']; ?>;">
         <div id="menu-nav" class="container-fluid">
 
-            <a class="link navbar-brand d-flex align-items-center" href="index.php">
-                <img src="<?php echo $conf['Logo']; ?>" width="45" style="margin-right:10px;">
-                <h1 style="font-size:30px; margin:0;"><?php echo $conf['Nombre_Sitio']; ?></h1>
-            </a>
+            <div class="d-flex align-items-center">
+                <a class="link navbar-brand d-flex align-items-center me-3" href="index.php">
+                    <img src="<?php echo $conf['Logo']; ?>" width="45" style="margin-right:10px;">
+                    <h1 style="font-size:30px; margin:0;"><?php echo $conf['Nombre_Sitio']; ?></h1>
+                </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <!-- Botón Sobre Nosotros -->
+                <a href="Sobre_Nosotros.php" class="btn btn-outline-light" style="height:40px; margin-left:10px;">
+                    Sobre Nosotros
+                </a>
+                <a href="contacto.php" class="btn btn-outline-light" style="height:40px;">
+                    Contacto
+                </a>
+            </div>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                 <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
@@ -175,8 +180,9 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
                          NOTICIAS
 ====================================================== -->
 
-    <div id="carouselNoti" class="carousel slide">
-        <h2>Ultimas noticias</h2>
+        <div id="carouselNoti" class="carousel slide">
+        <h2>Últimas noticias</h2>
+
         <div class="carousel-inner">
 
             <?php
@@ -224,16 +230,22 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
 
         <button class="carousel-control-prev" id="caja-boton-prev" type="button" data-bs-target="#carouselNoti"
             data-bs-slide="prev">
-            <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Anterior</span>
         </button>
 
-        <button id="caja-boton-next" class="carousel-control-next " type="button" data-bs-target="#carouselNoti"
+        <button id="caja-boton-next" class="carousel-control-next" type="button" data-bs-target="#carouselNoti"
             data-bs-slide="next">
-            <span class="carousel-control-next-icon " aria-hidden="true"></span>
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Siguiente</span>
         </button>
+
+        <!-- Indicador de página -->
+        <div id="pagina-carousel" class="text-center mt-2" style="color:white;">
+            Página 1 / <?php echo $num_slides; ?>
+        </div>
     </div>
+
 
 </main>
 
@@ -253,6 +265,16 @@ $footer = $conn->query("SELECT * FROM footer_info LIMIT 1")->fetch_assoc();
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const carouselNoti = document.getElementById('carouselNoti');
+    const totalSlides = <?php echo $num_slides; ?>;
+    const paginaDisplay = document.getElementById('pagina-carousel');
+
+    carouselNoti.addEventListener('slid.bs.carousel', function (e) {
+        const activeIndex = e.to + 1; // e.to empieza en 0
+        paginaDisplay.textContent = `Página ${activeIndex} / ${totalSlides}`;
+    });
+</script>
 
 </body>
 </html>
