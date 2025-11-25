@@ -89,3 +89,9 @@ footer {
     background-color: #1abc54;
     padding: 25px 0px 25px 0px;
 }
+
+
+ footer p{
+    color: white;
+    font-size:18px;
+ }

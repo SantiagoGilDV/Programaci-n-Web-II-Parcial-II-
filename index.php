@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 $host = "localhost";
@@ -11,37 +12,44 @@ $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
-if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
 
-    $sql = "SELECT * FROM usuarios WHERE username = ? LIMIT 1";
+if (isset($_POST['login'])) {
+
+    $username = $_POST['Nombre_Usuario'];
+    $password = $_POST['Contrasenia'];
+
+    // Buscar usuario por Nombre_Usuario
+    $sql = "SELECT * FROM usuario";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows === 1) {
+
         $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            header("Location: index.php");
+
+        // Como tus contraseñas NO están encriptadas:
+        if ($password === $user['Contrasenia']) {
+
+            // Guardar datos en sesión
+            $_SESSION['user_id'] = $user['Id'];
+            $_SESSION['Nombre_Usuario'] = $user['Nombre_Usuario'];
+
+            header("Location: Artista.php");
             exit;
+
         } else {
             $error = "Contraseña incorrecta.";
         }
+
     } else {
         $error = "Usuario no encontrado.";
     }
 }
 
-if (isset($_GET['logout'])) {
-    session_destroy();
-    header("Location: index.php");
-    exit;
-}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -225,11 +233,20 @@ if (isset($_GET['logout'])) {
         </div>
 
     </main>
-    <footer class="text-center">
-        <div class="card-body">
-            <h3 class="card-title">©Todos los derechos reservados 2025</h3>
-        </div>
-    </footer>
+    <?php
+$footer = $conn->query("SELECT * FROM footer_info LIMIT 1")->fetch_assoc();
+?>
+
+<footer>
+    <div class="container text-center">
+
+        <p >
+            <?php echo $footer['Texto']; ?>
+        </p>
+        <p >Contacto: <?php echo $footer['Email']; ?></p>
+
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

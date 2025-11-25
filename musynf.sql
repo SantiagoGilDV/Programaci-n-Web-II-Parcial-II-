@@ -66,11 +66,7 @@ INSERT INTO `artista` (`Id`, `Inicio_Actividad`, `Fecha_Nacimiento`, `Nombre`, `
 --
 -- Estructura de tabla para la tabla `configuracion_sitio`
 --
-CREATE TABLE usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario VARCHAR(50) NOT NULL,
-    clave VARCHAR(255) NOT NULL
-);
+
 
 CREATE TABLE `header` (
   `Id` int(11) NOT NULL,
