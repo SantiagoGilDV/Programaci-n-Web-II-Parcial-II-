@@ -1,0 +1,27 @@
+/* Estilo general del login */
+body {
+    background-color: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor del login */
+.login-container {
+    width: 400px;
+    padding: 40px;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Título del login */
+.login-container h2 {
+    text-align: center;
+    color: #1abc54;
+    margin-bottom: 30px;
+    font-weight: bold
+}
