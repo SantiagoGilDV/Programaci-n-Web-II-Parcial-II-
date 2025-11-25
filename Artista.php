@@ -38,8 +38,45 @@ $artista = $result->fetch_assoc();
 </head>
 
 <body>
- <header>
-        <nav class="navbar navbar-expand-lg bg-green">
+    <?php
+    $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
+    ?>
+    <header>
+        <nav class="navbar navbar-expand-lg" style="background-color: <?php echo $conf['Color_Primario']; ?>;">
+            <div id="menu-nav">
+
+                <div class="d-flex align-items-center">
+                    <a class="link navbar-brand d-flex align-items-center me-3" href="index.php">
+                        <img src="<?php echo $conf['Logo']; ?>" width="45" style="margin-right:10px;">
+                        <h1 style="font-size:30px; margin:0;"><?php echo $conf['Nombre_Sitio']; ?></h1>
+                    </a>
+
+                    <!-- Botón Sobre Nosotros -->
+                    <a href="Sobre_Nosotros.php" class="btn btn-outline-light" style="height:40px; margin-left:10px;">
+                        Sobre Nosotros
+                    </a>
+                    <a href="contacto.php" class="btn btn-outline-light" style="height:40px;">
+                        Contacto
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                    <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
+                        <span class="navbar-text text-white me-3">
+                            Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
+                        </span>
+                        <a href="logout.php" class="btn btn-outline-light">Cerrar sesión</a>
+                    <?php else: ?>
+                        <a href="login.php" class="btn btn-outline-light">
+                            Login
+                            <!-- <img src="./Img/login_icon.png" alt="Login" style="width:24px; height:24px;"> -->
+                        </a>
+                    <?php endif; ?>
+                </div>
+
+            </div>
+        </nav>
+        <!-- <nav class="navbar navbar-expand-lg bg-green">
             <div class="container-fluid">
                 <a class="link navbar-brand" href="#">
                     <h1>Musynf</h1>
@@ -58,38 +95,39 @@ $artista = $result->fetch_assoc();
                     
                 </div>
             </div>
-        </nav>
+        </nav> -->
     </header>
     <main>
-    <div id="contenedor_Art">
-    <a href="index.php" class="btn btn-secondary mb-3 " id ="boton"> Volver</a>
+        <div id="contenedor_Art">
+            <a href="index.php" class="btn btn-secondary mb-3 " id="boton"> Volver</a>
 
-    <div id ="card"class="card p-4">
-        <h2 class="text-center"><?php echo $artista['Nombre_Artistico']; ?></h2>
+            <div id="card" class="card p-4">
+                <h2 class="text-center"><?php echo $artista['Nombre_Artistico']; ?></h2>
 
-        <div class="text-center">
-            <img src="<?php echo $artista['Imagen']; ?>" class="img-fluid rounded" width="300">
+                <div class="text-center">
+                    <img src="<?php echo $artista['Imagen']; ?>" class="img-fluid rounded" width="300">
+                </div>
+
+                <hr>
+
+                <h4>Descripción</h4>
+                <p>
+                    <?php echo nl2br($artista['Descripcion']); ?>
+                </p>
+            </div>
         </div>
+    </main>
+    <?php
+    $footer = $conn->query("SELECT * FROM footer_info LIMIT 1")->fetch_assoc();
+    ?>
 
-        <hr>
-
-        <h4>Descripción</h4>
-        <p>
-            <?php echo nl2br($artista['Descripcion']); ?>
-        </p>
-    </div>
-    </div>
-</main>
-<?php
-$footer = $conn->query("SELECT * FROM footer_info LIMIT 1")->fetch_assoc();
-?>
-
-<footer >
-    <div class="container text-center">
-        <p><?php echo $footer['Texto']; ?></p>
-        <p>Contacto: <?php echo $footer['Email']; ?></p>
-    </div>
-</footer>
+    <footer>
+        <div class="container text-center">
+            <p><?php echo $footer['Texto']; ?></p>
+            <p>Contacto: <?php echo $footer['Email']; ?></p>
+        </div>
+    </footer>
 
 </body>
+
 </html>

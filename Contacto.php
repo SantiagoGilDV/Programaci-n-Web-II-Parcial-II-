@@ -1,3 +1,15 @@
+<?php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "musynf";
+
+$conn = new mysqli($host, $user, $pass, $db);
+
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+} ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,39 +28,50 @@
 
  <?php
 session_start(); // necesario para mostrar el nombre
+$conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
 ?>
-
 <header>
-    <nav class="navbar navbar-expand-lg" style="background-color: #1abc54;">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
+    <nav class="navbar navbar-expand-lg" style="background-color: <?php echo $conf['Color_Primario']; ?>;">
+        <div id="menu-nav"> 
 
-            <!-- Nombre del sitio -->
-            <a class="navbar-brand d-flex align-items-center" href="index.php">
-                <img src="./Img/spotify_black.png" width="45" style="margin-right:10px;">
-                <h1 class="m-0" style="font-size:30px;">Musynf</h1>
-            </a>
+            <div class="d-flex align-items-center">
+                <a class="link navbar-brand d-flex align-items-center me-3" href="index.php">
+                    <img src="<?php echo $conf['Logo']; ?>" width="45" style="margin-right:10px;">
+                    <h1 style="font-size:30px; margin:0;"><?php echo $conf['Nombre_Sitio']; ?></h1>
+                </a>
 
-            <!-- Nombre del usuario -->
-            <span class="text-white fw-bold">
-                <?php 
-                    if (isset($_SESSION['Nombre_Usuario'])) {
-                        echo "Hola, " . htmlspecialchars($_SESSION['Nombre_Usuario']);
-                    } else {
-                        echo "Invitado";
-                    }
-                ?>
-            </span>
+                <!-- Botón Sobre Nosotros -->
+                <a href="Sobre_Nosotros.php" class="btn btn-outline-light" style="height:40px; margin-left:10px;">
+                    Sobre Nosotros
+                </a>
+                <a href="contacto.php" class="btn btn-outline-light" style="height:40px;">
+                    Contacto
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
+                    <span class="navbar-text text-white me-3">
+                        Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
+                    </span>
+                    <a href="logout.php" class="btn btn-outline-light">Cerrar sesión</a>
+                <?php else: ?>
+                    <a href="login.php" class="btn btn-outline-light">
+                        Login
+                        <!-- <img src="./Img/login_icon.png" alt="Login" style="width:24px; height:24px;"> -->
+                    </a>
+                <?php endif; ?>
+            </div>
 
         </div>
     </nav>
 </header>
 
-
     <main class="main-center">
         <div class="contact-container">
             <h2>Formulario de Contacto</h2>
 
-            <form action="procesar_contacto.php" method="POST">
+            <form action="index.php" method="POST">
 
                 <label class="form-label">Nombre completo</label>
                 <input type="text" class="form-control" name="nombre" required>

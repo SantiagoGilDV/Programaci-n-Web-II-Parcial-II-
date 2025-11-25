@@ -1,12 +1,33 @@
+html {
+    height: 100vh;
+}
+
+
 body {
     background-color: #121212;
     color: white;
     font-family: Arial, sans-serif;
+    height: 77%;
 }
 
 main {
     padding: 50px;
     text-align: center;
+    height: 100%;
+}
+
+#menu-nav {
+    width: 80%;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+
+.link,
+.btn {
+    color: white;
 }
 
 h2 {

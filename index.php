@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+mysqli_report(MYSQLI_REPORT_OFF);
 
 $host = "localhost";
 $user = "root";
@@ -9,14 +11,20 @@ $db = "musynf";
 $conn = new mysqli($host, $user, $pass, $db);
 
 if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+    header("Location: error.php");
+    exit();
 }
+
+// if ($conn->connect_error) {
+//     die("Error de conexión: " . $conn->connect_error);
+// }
 
 /* ==========================
    LOGIN (desde login.php)
    ========================== */
 if (isset($_POST['login'])) {
 
+    
     $username = $_POST['Nombre_Usuario'];
     $password = $_POST['Contrasenia'];
 
@@ -28,13 +36,13 @@ if (isset($_POST['login'])) {
 
     if ($result->num_rows === 1) {
 
+        
         $user = $result->fetch_assoc();
 
         if ($password === $user['Contrasenia']) {
 
             $_SESSION['user_id'] = $user['Id'];
             $_SESSION['Nombre_Usuario'] = $user['Nombre_Usuario'];
-
             header("Location: index.php");
             exit;
 
@@ -74,7 +82,7 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
 
 <header>
     <nav class="navbar navbar-expand-lg" style="background-color: <?php echo $conf['Color_Primario']; ?>;">
-        <div id="menu-nav" class="container-fluid">
+        <div id="menu-nav"> 
 
             <div class="d-flex align-items-center">
                 <a class="link navbar-brand d-flex align-items-center me-3" href="index.php">
@@ -99,7 +107,8 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
                     <a href="logout.php" class="btn btn-outline-light">Cerrar sesión</a>
                 <?php else: ?>
                     <a href="login.php" class="btn btn-outline-light">
-                        <img src="./Img/login_icon.png" alt="Login" style="width:24px; height:24px;">
+                        Login
+                        <!-- <img src="./Img/login_icon.png" alt="Login" style="width:24px; height:24px;"> -->
                     </a>
                 <?php endif; ?>
             </div>
@@ -143,7 +152,7 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
             ?>
 
             <div id="cont_Art" class="contenedor_artista text-center mx-3">
-                <a class="link_Artist" href="./Artista.php?id=<?php echo $id; ?>">
+                <a class="link_Artist" href=<?php echo isset($_SESSION['user_id']) ? './Artista.php?id=' . $id : 'login.php'; ?>>
                     <img id="img_art" src="<?php echo $img; ?>" class="artista d-inline" alt="imagen artista">
                     <h3><?php echo htmlspecialchars($nombre); ?></h3>
                 </a>
@@ -210,7 +219,7 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
             ?>
 
             <div id="cont_Art" class="contenedor_artista text-center mx-3">
-                <a class="link_Artist" id="art_not" href="./Artista.php?id=<?php echo $id; ?>">
+                <a class="link_Artist" id="art_not" href=<?php echo isset($_SESSION['user_id']) ? './Artista.php?id=' . $id : 'login.php'; ?>>
                     <img src="<?php echo $img; ?>" class="artista d-inline" alt="imagen noticia">
                     <p><?php echo htmlspecialchars($noticia); ?></p>
                 </a>

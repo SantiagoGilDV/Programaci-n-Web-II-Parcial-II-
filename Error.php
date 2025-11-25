@@ -12,7 +12,7 @@
         <h1>¡Error!</h1>
         <h2>No se pudieron obtener los datos</h2>
         <p>Hubo un problema al intentar acceder a la información que solicitaste. Por favor, intenta de nuevo más tarde.</p>
-        <a href="index.php" class="btn-back">Volver al inicio</a>
+        <a href="index.php" class="btn-back">Volver a intentarlo</a>
     </div>
 </body>
 </html>
