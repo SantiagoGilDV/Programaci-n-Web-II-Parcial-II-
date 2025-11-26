@@ -51,7 +51,7 @@ $artista = $result->fetch_assoc();
                         <h1 style="font-size:30px; margin:0;"><?php echo $conf['Nombre_Sitio']; ?></h1>
                     </a>
 
-                    <!-- Botón Sobre Nosotros -->
+                    <!-- Boton Sobre Nosotros -->
                     <a href="Sobre_Nosotros.php" class="btn btn-outline-light" style="height:40px; margin-left:10px;">
                         Sobre Nosotros
                     </a>
@@ -69,33 +69,14 @@ $artista = $result->fetch_assoc();
                     <?php else: ?>
                         <a href="login.php" class="btn btn-outline-light">
                             Login
-                            <!-- <img src="./Img/login_icon.png" alt="Login" style="width:24px; height:24px;"> -->
+                            
                         </a>
                     <?php endif; ?>
                 </div>
 
             </div>
         </nav>
-        <!-- <nav class="navbar navbar-expand-lg bg-green">
-            <div class="container-fluid">
-                <a class="link navbar-brand" href="#">
-                    <h1>Musynf</h1>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="link nav-link" aria-current="page" href="index.php">Home</a>
-                        </li>
-                    </ul>
-                    <img id="logo" class="d-flex" role="search" src="./Img/spotify_black.png" alt="">
-                    
-                </div>
-            </div>
-        </nav> -->
+        
     </header>
     <main>
         <div id="contenedor_Art">

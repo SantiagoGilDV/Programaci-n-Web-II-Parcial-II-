@@ -15,13 +15,8 @@ if ($conn->connect_error) {
     exit();
 }
 
-// if ($conn->connect_error) {
-//     die("Error de conexión: " . $conn->connect_error);
-// }
 
-/* ==========================
-   LOGIN (desde login.php)
-   ========================== */
+/*LOGIN (desde login.php) */
 if (isset($_POST['login'])) {
 
     
@@ -72,9 +67,7 @@ if (isset($_POST['login'])) {
 
 <body>
 
-<!-- =====================================================
-                     HEADER DINÁMICO
-====================================================== -->
+<!--HEADER DINAMICO-->
 
 <?php
 $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
@@ -90,7 +83,7 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
                     <h1 style="font-size:30px; margin:0;"><?php echo $conf['Nombre_Sitio']; ?></h1>
                 </a>
 
-                <!-- Botón Sobre Nosotros -->
+                <!-- Boton Sobre Nosotros -->
                 <a href="Sobre_Nosotros.php" class="btn btn-outline-light" style="height:40px; margin-left:10px;">
                     Sobre Nosotros
                 </a>
@@ -108,7 +101,7 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
                 <?php else: ?>
                     <a href="login.php" class="btn btn-outline-light">
                         Login
-                        <!-- <img src="./Img/login_icon.png" alt="Login" style="width:24px; height:24px;"> -->
+                        
                     </a>
                 <?php endif; ?>
             </div>
@@ -118,9 +111,7 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
 </header>
 
 
-<!-- =====================================================
-                         CONTENIDO
-====================================================== -->
+<!-- CONTENIDo-->
 
 <main>
     <div id="carouselExample" class="carousel slide">
@@ -185,9 +176,7 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
 
 
 
-<!-- =====================================================
-                         NOTICIAS
-====================================================== -->
+<!--NOTICIAS -->
 
         <div id="carouselNoti" class="carousel slide">
         <h2>Últimas noticias</h2>
@@ -249,7 +238,7 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
             <span class="visually-hidden">Siguiente</span>
         </button>
 
-        <!-- Indicador de página -->
+        <!-- Indicador de pagina -->
         <div id="pagina-carousel" class="text-center mt-2" style="color:white;">
             Página 1 / <?php echo $num_slides; ?>
         </div>
@@ -258,9 +247,7 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
 
 </main>
 
-<!-- =====================================================
-                        FOOTER
-====================================================== -->
+<!--FOOTER-->
 
 <?php
 $footer = $conn->query("SELECT * FROM footer_info LIMIT 1")->fetch_assoc();
@@ -274,16 +261,6 @@ $footer = $conn->query("SELECT * FROM footer_info LIMIT 1")->fetch_assoc();
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    const carouselNoti = document.getElementById('carouselNoti');
-    const totalSlides = <?php echo $num_slides; ?>;
-    const paginaDisplay = document.getElementById('pagina-carousel');
-
-    carouselNoti.addEventListener('slid.bs.carousel', function (e) {
-        const activeIndex = e.to + 1; // e.to empieza en 0
-        paginaDisplay.textContent = `Página ${activeIndex} / ${totalSlides}`;
-    });
-</script>
 
 </body>
 </html>

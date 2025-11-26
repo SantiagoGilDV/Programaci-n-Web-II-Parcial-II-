@@ -27,7 +27,7 @@ if ($conn->connect_error) {
 <body>
 
  <?php
-session_start(); // necesario para mostrar el nombre
+session_start(); 
 $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
 ?>
 <header>
@@ -40,7 +40,7 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
                     <h1 style="font-size:30px; margin:0;"><?php echo $conf['Nombre_Sitio']; ?></h1>
                 </a>
 
-                <!-- Botón Sobre Nosotros -->
+                <!-- Boton Sobre Nosotros -->
                 <a href="Sobre_Nosotros.php" class="btn btn-outline-light" style="height:40px; margin-left:10px;">
                     Sobre Nosotros
                 </a>
@@ -58,7 +58,6 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
                 <?php else: ?>
                     <a href="login.php" class="btn btn-outline-light">
                         Login
-                        <!-- <img src="./Img/login_icon.png" alt="Login" style="width:24px; height:24px;"> -->
                     </a>
                 <?php endif; ?>
             </div>
