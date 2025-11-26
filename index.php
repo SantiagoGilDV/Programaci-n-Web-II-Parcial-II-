@@ -237,11 +237,6 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Siguiente</span>
         </button>
-
-        <!-- Indicador de pagina -->
-        <div id="pagina-carousel" class="text-center mt-2" style="color:white;">
-            Página 1 / <?php echo $num_slides; ?>
-        </div>
     </div>
 
 
