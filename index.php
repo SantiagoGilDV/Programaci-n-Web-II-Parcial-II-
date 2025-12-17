@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+$_SESSION['rol'] = $user['Rol']; // admin o usuario
 mysqli_report(MYSQLI_REPORT_OFF);
 
 $host = "localhost";
@@ -93,17 +94,35 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
             </div>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-                <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
-                    <span class="navbar-text text-white me-3">
-                        Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
-                    </span>
-                    <a href="logout.php" class="btn btn-outline-light">Cerrar sesión</a>
-                <?php else: ?>
-                    <a href="login.php" class="btn btn-outline-light">
-                        Login
-                        
+
+            <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
+
+                <span class="navbar-text text-white me-3">
+                    Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
+                </span>
+
+                <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+                    <!-- BOTONES SOLO ADMIN -->
+                    <a href="admin/panel_admin.php" class="btn btn-outline-light me-2">
+                        Panel Admin
+                    </a>
+                    <a href="admin/crear.php" class="btn btn-outline-light me-2">
+                        Agregar
                     </a>
                 <?php endif; ?>
+
+                <a href="logout.php" class="btn btn-outline-light">
+                    Cerrar sesión
+                </a>
+
+            <?php else: ?>
+
+                <a href="login.php" class="btn btn-outline-light">
+                    Login
+                </a>
+
+            <?php endif; ?>
+
             </div>
 
         </div>
