@@ -28,7 +28,6 @@ body {
     color: white;
 }
 
-/* Caja del formulario */
 .contact-container {
     width: 450px;
     padding: 40px;
@@ -38,7 +37,6 @@ body {
     color: white !important;
 }
 
-/* Título */
 .contact-container h2 {
     text-align: center;
     color: #1abc54 !important;
@@ -46,14 +44,12 @@ body {
     font-weight: bold;
 }
 
-/* Labels */
 label,
 .form-label {
     color: white !important;
     font-weight: bold !important;
 }
 
-/* Inputs, selects y textarea */
 .form-control,
 .form-select,
 textarea {
@@ -62,19 +58,16 @@ textarea {
     border: 1px solid #1abc54 !important;
 }
 
-/* Placeholder */
 .form-control::placeholder,
 textarea::placeholder {
     color: #dddddd !important;
 }
 
-/* Select opciones */
 .form-select option {
     background-color: #2c2c2c !important;
     color: white !important;
 }
 
-/* Botón */
 .btn-submit {
     width: 100%;
     background-color: #1abc54 !important;

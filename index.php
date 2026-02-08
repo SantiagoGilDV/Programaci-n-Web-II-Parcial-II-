@@ -4,52 +4,56 @@ session_start();
 mysqli_report(MYSQLI_REPORT_OFF);
 
 $host = "localhost";
-$user = "root";
+$db_user = "root";
 $pass = "";
 $db = "musynf";
 
-$conn = new mysqli($host, $user, $pass, $db);
+$conn = new mysqli($host, $db_user, $pass, $db);
 
 if ($conn->connect_error) {
     header("Location: error.php");
     exit();
 }
 
-
-/*LOGIN (desde login.php) */
 if (isset($_POST['login'])) {
 
-    
-    $username = $_POST['Nombre_Usuario'];
-    $password = $_POST['Contrasenia'];
+    if (empty($_POST['Nombre_Usuario']) || empty($_POST['Contrasenia'])) {
+        $error = "Todos los campos son obligatorios.";
+    } else {
 
-    $sql = "SELECT * FROM usuario WHERE Nombre_Usuario = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+        $username = $_POST['Nombre_Usuario'];
+        $password = $_POST['Contrasenia'];
 
-    if ($result->num_rows === 1) {
+        $sql = "SELECT * FROM usuario WHERE Nombre_Usuario = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        
-        $user = $result->fetch_assoc();
+        if ($result->num_rows === 1) {
 
-        if ($password === $user['Contrasenia']) {
+            $user = $result->fetch_assoc();
 
-            $_SESSION['user_id'] = $user['Id'];
-            $_SESSION['Nombre_Usuario'] = $user['Nombre_Usuario'];
-            header("Location: index.php");
-            exit;
+            if ($password === $user['Contrasenia']) {
+
+                $_SESSION['user_id'] = $user['Id'];
+                $_SESSION['Nombre_Usuario'] = $user['Nombre_Usuario'];
+                $_SESSION['rol'] = $user['Rol']; // 👈 ACÁ ESTÁ LA CLAVE
+
+                header("Location: index.php");
+                exit();
+
+            } else {
+                $error = "Contraseña incorrecta.";
+            }
 
         } else {
-            $error = "Contraseña incorrecta.";
+            $error = "Usuario no encontrado.";
         }
-
-    } else {
-        $error = "Usuario no encontrado.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -67,7 +71,6 @@ if (isset($_POST['login'])) {
 
 <body>
 
-<!--HEADER DINAMICO-->
 
 <?php
 $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
@@ -83,7 +86,6 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
                     <h1 style="font-size:30px; margin:0;"><?php echo $conf['Nombre_Sitio']; ?></h1>
                 </a>
 
-                <!-- Boton Sobre Nosotros -->
                 <a href="Sobre_Nosotros.php" class="btn btn-outline-light" style="height:40px; margin-left:10px;">
                     Sobre Nosotros
                 </a>
@@ -99,19 +101,23 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
                     </span>
                     <a href="logout.php" class="btn btn-outline-light">Cerrar sesión</a>
                 <?php else: ?>
-                    <a href="login.php" class="btn btn-outline-light">
-                        Login
-                        
-                    </a>
-                <?php endif; ?>
+
+                    <a href="login.php" class="btn btn-outline-light me-2">
+                    Login
+                     </a>
+
+                    <a href="Crear_usuario.php" class="btn btn-success">
+                     Registrarse
+                     </a>
+
+                    <?php endif; ?>
+
             </div>
 
         </div>
     </nav>
 </header>
 
-
-<!-- CONTENIDo-->
 
 <main>
     <div id="carouselExample" class="carousel slide">
@@ -175,8 +181,6 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
     </div>
 
 
-
-<!--NOTICIAS -->
 
         <div id="carouselNoti" class="carousel slide">
         <h2>Últimas noticias</h2>
@@ -242,7 +246,6 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
 
 </main>
 
-<!--FOOTER-->
 
 <?php
 $footer = $conn->query("SELECT * FROM footer_info LIMIT 1")->fetch_assoc();

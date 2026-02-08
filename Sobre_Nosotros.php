@@ -38,7 +38,6 @@ if ($conn->connect_error) {
                         <h1 style="font-size:30px; margin:0;"><?php echo $conf['Nombre_Sitio']; ?></h1>
                     </a>
 
-                    <!-- Boton Sobre Nosotros -->
                     <a href="Sobre_Nosotros.php" class="btn btn-outline-light" style="height:40px; margin-left:10px;">
                         Sobre Nosotros
                     </a>
