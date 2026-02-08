@@ -95,22 +95,37 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
             </div>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-                <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
-                    <span class="navbar-text text-white me-3">
-                        Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
-                    </span>
-                    <a href="logout.php" class="btn btn-outline-light">Cerrar sesión</a>
-                <?php else: ?>
 
-                    <a href="login.php" class="btn btn-outline-light me-2">
-                    Login
-                     </a>
+               <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
+    <span class="navbar-text text-white me-3">
+                Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
+            </span>
 
-                    <a href="Crear_usuario.php" class="btn btn-success">
-                     Registrarse
-                     </a>
+            <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+                <a href="admin/panel_admin.php" class="btn btn-outline-light me-2">
+                    Panel Admin
+                </a>
+                <a href="admin/crear.php" class="btn btn-outline-light me-2">
+                    Agregar
+                </a>
+            <?php endif; ?>
 
-                    <?php endif; ?>
+            <a href="logout.php" class="btn btn-outline-light">
+                Cerrar sesión
+            </a>
+
+        <?php else: ?>
+
+            <a href="login.php" class="btn btn-outline-light me-2">
+                Login
+            </a>
+
+            <a href="Crear_usuario.php" class="btn btn-success">
+                Registrarse
+            </a>
+
+        <?php endif; ?>
+
 
             </div>
 

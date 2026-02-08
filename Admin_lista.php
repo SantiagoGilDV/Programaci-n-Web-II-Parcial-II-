@@ -50,4 +50,5 @@ $result = $conn->query("SELECT * FROM lista");
 <a href="bienvenida.php">Volver</a>
 
 </body>
+
 </html>
