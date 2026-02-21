@@ -17,21 +17,21 @@ $result = $stmt->get_result();
 if ($result && $result->num_rows === 1) {
     $user = $result->fetch_assoc();
 
-    // En tu BD la contraseña está en texto plano:
+    
     if ($clave === $user['Contrasenia']) {
 
-        // --- Sesiones (compatibles con tu index.php) ---
-        $_SESSION['user_id']        = $user['Id'];                // index usa user_id
-        $_SESSION['Nombre_Usuario'] = $user['Nombre_Usuario'];    // index usa Nombre_Usuario
+        
+        $_SESSION['user_id']        = $user['Id'];                
+        $_SESSION['Nombre_Usuario'] = $user['Nombre_Usuario'];    
         $_SESSION['rol']            = $user['Rol'];
 
-        // (Opcional) mantener las que ya estabas usando en otras páginas
+        
         $_SESSION['id_usuario'] = $user['Id'];
         $_SESSION['usuario']    = $user['Nombre_Usuario'];
 
-        // Redirección según rol
+        
         if ($user['Rol'] === 'admin') {
-            header("Location: Admin_lista.php");
+            header("Location: Bienvenida.php");
         } else {
             header("Location: Bienvenida.php");
         }

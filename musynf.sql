@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2026 a las 19:12:35
+-- Tiempo de generación: 21-02-2026 a las 21:28:36
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -59,7 +59,7 @@ INSERT INTO `artista` (`Id`, `Inicio_Actividad`, `Fecha_Nacimiento`, `Nombre`, `
 (9, NULL, NULL, '', '', 'Acru', NULL, NULL, NULL, './Img/acru.jpeg', 'Acru es un rapero argentino reconocido por su técnica, métricas complejas y profundidad lírica. Es respetado en la escena del hip hop por su estilo clásico, su habilidad para improvisar y sus proyectos conceptuales que destacan por su calidad poética y musical.', 'Acru sorprendió a sus fans con un nuevo single que mezcla rap clásico y jazz, adelantando parte de su próximo disco.', './Img/acru_noti.jpg'),
 (10, NULL, NULL, '', NULL, 'Cazzu', NULL, NULL, NULL, './Img/cazzu.jpeg', 'Cazzu es una cantante y compositora argentina, considerada una figura clave del trap latino. Con su estética marcada, letras intensas y versatilidad entre lo urbano y lo alternativo, se consolidó como una referente femenina influyente dentro de la música urbana.', 'Cazzu estrenó una producción visual experimental para acompañar una nueva versión en vivo de uno de sus temas más populares.', './Img/cazzu_noti.jpg'),
 (11, NULL, NULL, '', NULL, 'Lit Killah', NULL, NULL, NULL, './Img/lit.jpeg', 'Lit Killah es un rapero, cantante y freestyler argentino surgido de las competencias de improvisación. Con un estilo melódico y pegadizo, logró destacar en la música urbana gracias a su flow rápido, sus producciones modernas y su presencia en redes.', 'Lit Killah reveló en redes sociales que está trabajando en un nuevo disco, mostrando fragmentos inéditos desde el estudio.', './Img/lit_noti.jpg'),
-(12, NULL, NULL, '', NULL, 'Trueno', NULL, NULL, NULL, './Img/trueno.jpeg', 'Trueno es un rapero y freestyler argentino que combina rap, trap y ritmos latinos. Ganó reconocimiento por su talento en batallas y luego por su música cargada de identidad, mensaje social y energía. Es una de las voces más representativas de la nueva generación urbana.', 'Trueno anunció una gira por Latinoamérica con un show renovado que mezcla rap, folclore y ritmos afro-latinos.', './Img/trueno_noti.jpg');
+(12, '0000-00-00', '0000-00-00', 'Mateo', '', 'Trueno', '', 'Argentino', '0000-00-00', './Img/trueno.jpeg', 'Trueno es un rapero y freestyler argentino que combina rap, trap y ritmos latinos. Ganó reconocimiento por su talento en batallas y luego por su música cargada de identidad, mensaje social y energía. Es una de las voces más representativas de la nueva generación urbana.', 'Trueno anunció una gira por Latinoamérica con un show renovado que mezcla rap, folclore y ritmos afro-latinos.', './Img/trueno_noti.jpg');
 
 -- --------------------------------------------------------
 
@@ -184,7 +184,7 @@ ALTER TABLE `header`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

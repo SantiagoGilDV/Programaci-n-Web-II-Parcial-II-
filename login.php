@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+     <link rel="icon" href="./Img/Spotify_icon.svg.png" type="image/png">
     <link rel="stylesheet" href="css/login.css">
 
 </head>
@@ -41,13 +42,6 @@
             </button>
 
             <br>
-
-            <button 
-                type="button" 
-                onclick="window.location.href='index.php'"
-                style="padding: 5px 10px; font-size: 13px; width: auto; background-color:#159e44;">
-                Continuar sin iniciar sesión
-            </button>
 
         </div>
 

@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Crear Usuario</title>
     <link rel="stylesheet" href="css/login.css">
+     <link rel="icon" href="./Img/Spotify_icon.svg.png" type="image/png">
 </head>
 <body>
 <div class="container mt-5">

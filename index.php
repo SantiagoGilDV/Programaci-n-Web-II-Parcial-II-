@@ -38,7 +38,7 @@ if (isset($_POST['login'])) {
 
                 $_SESSION['user_id'] = $user['Id'];
                 $_SESSION['Nombre_Usuario'] = $user['Nombre_Usuario'];
-                $_SESSION['rol'] = $user['Rol']; // 👈 ACÁ ESTÁ LA CLAVE
+                $_SESSION['rol'] = $user['Rol'];
 
                 header("Location: index.php");
                 exit();
@@ -102,11 +102,11 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
             </span>
 
             <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
-                <a href="admin/panel_admin.php" class="btn btn-outline-light me-2">
+                <a href="./Admin_lista.php" class="btn btn-outline-light me-2">
                     Panel Admin
                 </a>
-                <a href="admin/crear.php" class="btn btn-outline-light me-2">
-                    Agregar
+                <a href="./Lista_usuarios.php" class="btn btn-outline-light me-2">
+                    Modificar rol
                 </a>
             <?php endif; ?>
 
