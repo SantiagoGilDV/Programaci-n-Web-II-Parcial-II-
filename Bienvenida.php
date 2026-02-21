@@ -2,7 +2,7 @@
 session_start();
 require_once "Conexion.php";
 
-if (!isset($_SESSION['usuario'])) {
+if (!isset($_SESSION['Nombre_Usuario'])) {
     header("Location: login.php");
     exit;
 }
@@ -18,7 +18,7 @@ if (!isset($_SESSION['usuario'])) {
 <body>
 
 <div class="bienvenida-container">
-    <h2>Bienvenido <span class="resaltado"><?php echo $_SESSION['usuario']; ?></span></h2>
+    <h2>Bienvenido <span class="resaltado"><?php echo $_SESSION['Nombre_Usuario']; ?></span></h2>
     <p>Rol: <span class="resaltado"><?php echo $_SESSION['rol']; ?></span></p>
 
     <a href="index.php">Volver al inicio</a>
