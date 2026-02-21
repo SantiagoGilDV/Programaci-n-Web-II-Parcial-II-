@@ -1,0 +1,70 @@
+/* Mismo estilo base que tu login.css */
+body {
+    background-color: #121212;
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Caja tipo "login-container" */
+.bienvenida-container {
+    width: 420px;
+    padding: 30px;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    text-align: center;
+}
+
+/* Título como el h2 del login */
+.bienvenida-container h2 {
+    color: #1abc54;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+/* Texto secundario */
+.bienvenida-container p {
+    margin: 10px 0 20px 0;
+    color: #cfcfcf;
+    font-size: 16px;
+}
+
+/* Links como botones (sin JS) */
+.bienvenida-container a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 12px;
+    text-decoration: none;
+    background-color: #1abc54;
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover igual que tu button:hover */
+.bienvenida-container a:hover {
+    background-color: #159e44;
+}
+
+/* Botón secundario (opcional) */
+.bienvenida-container a.secundario {
+    background-color: #2c2c2c;
+    border: 1px solid #1abc54;
+}
+
+.bienvenida-container a.secundario:hover {
+    background-color: #242424;
+}
+
+/* Detalle para destacar usuario/rol */
+.resaltado {
+    color: #1abc54;
+    font-weight: bold;
+}

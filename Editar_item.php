@@ -1,4 +1,13 @@
 <?php
+session_start();
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
+    header("Location: Login.php");
+    exit;
+}
+?>
+
+
+<?php
 require 'conexion.php';
 
 if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'admin') {

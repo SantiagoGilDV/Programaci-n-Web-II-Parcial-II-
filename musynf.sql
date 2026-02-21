@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2025 a las 19:37:16
+-- Tiempo de generación: 21-02-2026 a las 19:12:35
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -64,27 +64,6 @@ INSERT INTO `artista` (`Id`, `Inicio_Actividad`, `Fecha_Nacimiento`, `Nombre`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `configuracion_sitio`
---
-
-
-CREATE TABLE `header` (
-  `Id` int(11) NOT NULL,
-  `Nombre_Sitio` varchar(100) NOT NULL,
-  `Logo` varchar(200) DEFAULT NULL,
-  `Color_Primario` varchar(20) DEFAULT '#1abc54'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `configuracion_sitio`
---
-
-INSERT INTO `header` (`Id`, `Nombre_Sitio`, `Logo`, `Color_Primario`) VALUES
-(1, 'Musynf', './Img/spotify_black.png', '#1abc54');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `footer_info`
 --
 
@@ -104,6 +83,26 @@ INSERT INTO `footer_info` (`Id`, `Texto`, `Email`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `header`
+--
+
+CREATE TABLE `header` (
+  `Id` int(11) NOT NULL,
+  `Nombre_Sitio` varchar(100) NOT NULL,
+  `Logo` varchar(200) DEFAULT NULL,
+  `Color_Primario` varchar(20) DEFAULT '#1abc54'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `header`
+--
+
+INSERT INTO `header` (`Id`, `Nombre_Sitio`, `Logo`, `Color_Primario`) VALUES
+(1, 'Musynf', './Img/spotify_black.png', '#1abc54');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -115,16 +114,19 @@ CREATE TABLE `usuario` (
   `Apellido` varchar(45) DEFAULT NULL,
   `Nombre_Usuario` varchar(45) NOT NULL,
   `Contrasenia` varchar(128) NOT NULL,
-  `Correo` varchar(100) NOT NULL
+  `Correo` varchar(100) NOT NULL,
+  `Rol` varchar(20) NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`Id`, `Fecha_Alta`, `Fecha_Nacimiento`, `Nombre`, `Apellido`, `Nombre_Usuario`, `Contrasenia`, `Correo`) VALUES
-(1, '2025-10-05', '2002-10-27', 'Tomas', 'Fernandez', 'tomifer', 'futbol123', 'tomi@gmail.com'),
-(2, '2025-07-15', '1993-07-27', 'Joaquin', 'Dalmau', 'joadalmau', 'trap2025', 'joaco@gmail.com');
+INSERT INTO `usuario` (`Id`, `Fecha_Alta`, `Fecha_Nacimiento`, `Nombre`, `Apellido`, `Nombre_Usuario`, `Contrasenia`, `Correo`, `Rol`) VALUES
+(1, '2025-10-05', '2002-10-27', 'Tomas', 'Fernandez', 'tomifer', 'futbol123', 'tomi@gmail.com', 'user'),
+(2, '2025-07-15', '1993-07-27', 'Joaquin', 'Dalmau', 'joadalmau', 'trap2025', 'joaco@gmail.com', 'user'),
+(3, NULL, NULL, '', NULL, 'admin', 'admin123', '', 'admin'),
+(4, NULL, NULL, 'santiago', 'gil', 'santiago', '1234', 'santiago@gmail.com', 'user');
 
 --
 -- Índices para tablas volcadas
@@ -137,15 +139,15 @@ ALTER TABLE `artista`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Indices de la tabla `configuracion_sitio`
---
-ALTER TABLE `header`
-  ADD PRIMARY KEY (`Id`);
-
---
 -- Indices de la tabla `footer_info`
 --
 ALTER TABLE `footer_info`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `header`
+--
+ALTER TABLE `header`
   ADD PRIMARY KEY (`Id`);
 
 --
@@ -167,22 +169,22 @@ ALTER TABLE `artista`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT de la tabla `configuracion_sitio`
---
-ALTER TABLE `header`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT de la tabla `footer_info`
 --
 ALTER TABLE `footer_info`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `header`
+--
+ALTER TABLE `header`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
