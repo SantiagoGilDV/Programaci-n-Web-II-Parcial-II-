@@ -40,7 +40,12 @@
                 style="padding: 6px 10px; font-size: 14px; width: auto; margin-bottom: 10px;">
                 Registrarse
             </button>
-
+            <button 
+                type="button" 
+                onclick="window.location.href='index.php'"
+                style="padding: 6px 10px; font-size: 14px; width: auto; margin-bottom: 10px;">
+                Volver
+            </button>
             <br>
 
         </div>
