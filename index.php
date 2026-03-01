@@ -9,7 +9,7 @@ $pass = "";
 $db = "musynf";
 
 $conn = new mysqli($host, $db_user, $pass, $db);
-$esAdmin = (isset($_SESSION['Nombre_Usuario']) && $_SESSION['usuario'] === 'admin');
+$esAdmin = (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin');
 
 if ($conn->connect_error) {
     header("Location: error.php");
