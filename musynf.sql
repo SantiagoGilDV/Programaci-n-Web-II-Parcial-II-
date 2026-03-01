@@ -128,6 +128,16 @@ INSERT INTO `usuario` (`Id`, `Fecha_Alta`, `Fecha_Nacimiento`, `Nombre`, `Apelli
 (3, NULL, NULL, '', NULL, 'admin', 'admin123', '', 'admin'),
 (4, NULL, '0000-00-00', 'santiago', 'gil', 'santiago', '1234', 'santiago@gmail.com', 'user');
 
+CREATE TABLE contacto (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Email VARCHAR(150) NOT NULL,
+    Edad INT NOT NULL,
+    Asunto VARCHAR(50) NOT NULL,
+    Mensaje TEXT NOT NULL,
+    Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 --
 -- Índices para tablas volcadas
 --

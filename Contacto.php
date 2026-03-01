@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $host = "localhost";
 $user = "root";
 $pass = "";
@@ -10,6 +12,33 @@ if ($conn->connect_error) {
     header("Location: error.php");
     exit();
 }
+
+$mensajeExito = "";
+$mensajeError = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $nombre = $_POST['nombre'];
+    $email = $_POST['email'];
+    $edad = $_POST['edad'];
+    $asunto = $_POST['asunto'];
+    $mensaje = $_POST['mensaje'];
+
+    $sql = "INSERT INTO contacto (Nombre, Email, Edad, Asunto, Mensaje)
+            VALUES (?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssiss", $nombre, $email, $edad, $asunto, $mensaje);
+
+    if ($stmt->execute()) {
+        $mensajeExito = "Mensaje enviado correctamente.";
+    } else {
+        $mensajeError = "Error al enviar el mensaje.";
+    }
+}
+
+$conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
+$esAdmin = (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin');
 ?>
 
 <!DOCTYPE html>
@@ -27,13 +56,6 @@ if ($conn->connect_error) {
 </head>
 
 <body>
-
-    <?php
-    session_start();
-    $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
-$esAdmin = (isset($_SESSION['Nombre_Usuario']) && $_SESSION['usuario'] === 'admin');
-
-    ?>
     <header>
         <nav class="navbar navbar-expand-lg" style="background-color: <?php echo $conf['Color_Primario']; ?>;">
             <div id="menu-nav">
@@ -53,7 +75,7 @@ $esAdmin = (isset($_SESSION['Nombre_Usuario']) && $_SESSION['usuario'] === 'admi
                 </div>
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-                      <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
+                    <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
                         <span class="navbar-text text-white me-3">
                             Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
                         </span>
@@ -96,7 +118,15 @@ $esAdmin = (isset($_SESSION['Nombre_Usuario']) && $_SESSION['usuario'] === 'admi
         <div class="contact-container">
             <h2>Formulario de Contacto</h2>
 
-            <form action="Confirmacion.php" method="POST">
+            <?php if ($mensajeExito): ?>
+                <div class="alert alert-success"><?php echo $mensajeExito; ?></div>
+            <?php endif; ?>
+
+            <?php if ($mensajeError): ?>
+                <div class="alert alert-danger"><?php echo $mensajeError; ?></div>
+            <?php endif; ?>
+
+            <form method="POST">
 
                 <label class="form-label">Nombre completo</label>
                 <input type="text" class="form-control" name="nombre" required>
