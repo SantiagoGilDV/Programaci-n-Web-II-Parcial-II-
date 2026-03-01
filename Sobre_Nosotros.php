@@ -7,10 +7,10 @@ $db = "musynf";
 $conn = new mysqli($host, $user, $pass, $db);
 
 if ($conn->connect_error) {
-    header("Location: error.php");
+   header("Location: error.php");
     exit();
 }
-?>
+ ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -20,7 +20,7 @@ if ($conn->connect_error) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nosotros - Musynf</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" href="./Img/Spotify_icon.svg.png" type="image/png">
+     <link rel="icon" href="./Img/Spotify_icon.svg.png" type="image/png">
     <link rel="stylesheet" href="./css/sobre.css">
 
 </head>
@@ -29,7 +29,8 @@ if ($conn->connect_error) {
     <?php
     session_start();
     $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
-    ?>
+   $esAdmin = (isset($_SESSION['Nombre_Usuario']) && $_SESSION['usuario'] === 'admin');
+   ?>
 
     <header>
         <nav class="navbar navbar-expand-lg" style="background-color: <?php echo $conf['Color_Primario']; ?>;">
@@ -44,25 +45,45 @@ if ($conn->connect_error) {
                     <a href="Sobre_Nosotros.php" class="btn btn-outline-light" style="height:40px; margin-left:10px;">
                         Sobre Nosotros
                     </a>
-
+                    
                     <a href="contacto.php" class="btn btn-outline-light" style="height:40px;">
                         Contacto
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-                    <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
+                      <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
                         <span class="navbar-text text-white me-3">
                             Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
                         </span>
-                        <a href="Perfil.php" class="btn btn-outline-light me-2">
-                            Editar perfil
+
+                        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+                            <a href="./Admin_lista.php" class="btn btn-outline-light me-2">
+                                Panel Admin
+                            </a>
+                            <a href="./Lista_usuarios.php" class="btn btn-outline-light me-2">
+                                Modificar rol
+                            </a>
+                        <?php endif; ?>
+                        <?php if (!$esAdmin): ?>
+                            <a href="Perfil.php" class="btn btn-outline-light me-2">
+                                Editar perfil
+                            </a>
+                        <?php endif; ?>
+                        <a href="logout.php" class="btn btn-outline-light">
+                            Cerrar sesión
                         </a>
-                        <a href="logout.php" class="btn btn-outline-light">Cerrar sesión</a>
+
                     <?php else: ?>
-                        <a href="login.php" class="btn btn-outline-light">
+
+                        <a href="login.php" class="btn btn-outline-light me-2">
                             Login
                         </a>
+
+                        <a href="Crear_usuario.php" class="btn btn-success">
+                            Registrarse
+                        </a>
+
                     <?php endif; ?>
                 </div>
 

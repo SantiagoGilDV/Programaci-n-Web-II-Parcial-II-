@@ -31,6 +31,8 @@ if ($conn->connect_error) {
     <?php
     session_start();
     $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
+$esAdmin = (isset($_SESSION['Nombre_Usuario']) && $_SESSION['usuario'] === 'admin');
+
     ?>
     <header>
         <nav class="navbar navbar-expand-lg" style="background-color: <?php echo $conf['Color_Primario']; ?>;">
@@ -51,18 +53,38 @@ if ($conn->connect_error) {
                 </div>
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-                    <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
+                      <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
                         <span class="navbar-text text-white me-3">
                             Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
                         </span>
-                        <a href="Perfil.php" class="btn btn-outline-light me-2">
-                            Editar perfil
+
+                        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+                            <a href="./Admin_lista.php" class="btn btn-outline-light me-2">
+                                Panel Admin
+                            </a>
+                            <a href="./Lista_usuarios.php" class="btn btn-outline-light me-2">
+                                Modificar rol
+                            </a>
+                        <?php endif; ?>
+                        <?php if (!$esAdmin): ?>
+                            <a href="Perfil.php" class="btn btn-outline-light me-2">
+                                Editar perfil
+                            </a>
+                        <?php endif; ?>
+                        <a href="logout.php" class="btn btn-outline-light">
+                            Cerrar sesión
                         </a>
-                        <a href="logout.php" class="btn btn-outline-light">Cerrar sesión</a>
+
                     <?php else: ?>
-                        <a href="login.php" class="btn btn-outline-light">
+
+                        <a href="login.php" class="btn btn-outline-light me-2">
                             Login
                         </a>
+
+                        <a href="Crear_usuario.php" class="btn btn-success">
+                            Registrarse
+                        </a>
+
                     <?php endif; ?>
                 </div>
 
