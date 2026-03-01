@@ -10,8 +10,10 @@ $db = "musynf";
 $conn = new mysqli($host, $user, $pass, $db);
 
 if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+    header("Location: error.php");
+    exit();
 }
+
 
 $errores = [];
 $clave = "";
@@ -28,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $clave = $_POST['Contrasenia'];
     $correo = $_POST['Correo'];
 
-    // 🔎 Verificar si ya existe usuario o correo
+    // Verificar si ya existe usuario o correo
     $checkSql = "SELECT * FROM usuario WHERE Nombre_Usuario = ? OR Correo = ?";
     $checkStmt = $conn->prepare($checkSql);
     $checkStmt->bind_param("ss", $usuario, $correo);
@@ -46,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // ✅ Si no hay errores, insertar
+    // Si no hay errores, insertar
     if (empty($errores)) {
 
         $sql = "INSERT INTO usuario (Nombre, Apellido, Nombre_Usuario, Contrasenia, Correo)
@@ -79,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Crear Usuario</title>
     <link rel="stylesheet" href="css/login.css">
-     <link rel="icon" href="./Img/Spotify_icon.svg.png" type="image/png">
+    <link rel="icon" href="./Img/Spotify_icon.svg.png" type="image/png">
 </head>
 
 <body>
@@ -126,7 +128,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <button type="submit" class="btn btn-primary">Crear usuario</button>
+
+
         </form>
+        <br>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='index.php'">
+            Volver
+        </button>
     </div>
 
 </body>

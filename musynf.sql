@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2026 a las 21:28:36
+-- Tiempo de generación: 23-02-2026 a las 00:45:31
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -126,7 +126,7 @@ INSERT INTO `usuario` (`Id`, `Fecha_Alta`, `Fecha_Nacimiento`, `Nombre`, `Apelli
 (1, '2025-10-05', '2002-10-27', 'Tomas', 'Fernandez', 'tomifer', 'futbol123', 'tomi@gmail.com', 'user'),
 (2, '2025-07-15', '1993-07-27', 'Joaquin', 'Dalmau', 'joadalmau', 'trap2025', 'joaco@gmail.com', 'user'),
 (3, NULL, NULL, '', NULL, 'admin', 'admin123', '', 'admin'),
-(4, NULL, NULL, 'santiago', 'gil', 'santiago', '1234', 'santiago@gmail.com', 'user');
+(4, NULL, '0000-00-00', 'santiago', 'gil', 'santiago', '1234', 'santiago@gmail.com', 'user');
 
 --
 -- Índices para tablas volcadas

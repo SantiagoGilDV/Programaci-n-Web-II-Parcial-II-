@@ -6,9 +6,11 @@ $pass = "";
 $db = "musynf";
 
 $conn = new mysqli($host, $user, $pass, $db);
+$esAdmin = (isset($_SESSION['Nombre_Usuario']) && $_SESSION['usuario'] === 'admin');
 
 if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+    header("Location: error.php");
+    exit();
 }
 
 if (!isset($_GET['id'])) {
@@ -65,18 +67,35 @@ $artista = $result->fetch_assoc();
                         <span class="navbar-text text-white me-3">
                             Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
                         </span>
+                        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+                            <a href="./Admin_lista.php" class="btn btn-outline-light me-2">
+                                Panel Admin
+                            </a>
+                            <a href="./Lista_usuarios.php" class="btn btn-outline-light me-2">
+                                Modificar rol
+                            </a>
+                        <?php endif; ?>
+                        <?php if (!$esAdmin): ?>
+
+                            <a href="Perfil.php" class="btn btn-outline-light me-2">
+                                Editar perfil
+                            </a>
+                        <?php endif; ?>
+
                         <a href="logout.php" class="btn btn-outline-light">Cerrar sesión</a>
+
+
                     <?php else: ?>
                         <a href="login.php" class="btn btn-outline-light">
                             Login
-                            
+
                         </a>
                     <?php endif; ?>
                 </div>
 
             </div>
         </nav>
-        
+
     </header>
     <main>
         <div id="contenedor_Art">

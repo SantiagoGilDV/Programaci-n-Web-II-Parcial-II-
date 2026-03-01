@@ -7,8 +7,10 @@ $db = "musynf";
 $conn = new mysqli($host, $user, $pass, $db);
 
 if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-} ?>
+    header("Location: error.php");
+    exit();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -18,7 +20,7 @@ if ($conn->connect_error) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nosotros - Musynf</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-     <link rel="icon" href="./Img/Spotify_icon.svg.png" type="image/png">
+    <link rel="icon" href="./Img/Spotify_icon.svg.png" type="image/png">
     <link rel="stylesheet" href="./css/sobre.css">
 
 </head>
@@ -42,6 +44,7 @@ if ($conn->connect_error) {
                     <a href="Sobre_Nosotros.php" class="btn btn-outline-light" style="height:40px; margin-left:10px;">
                         Sobre Nosotros
                     </a>
+
                     <a href="contacto.php" class="btn btn-outline-light" style="height:40px;">
                         Contacto
                     </a>
@@ -52,6 +55,9 @@ if ($conn->connect_error) {
                         <span class="navbar-text text-white me-3">
                             Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
                         </span>
+                        <a href="Perfil.php" class="btn btn-outline-light me-2">
+                            Editar perfil
+                        </a>
                         <a href="logout.php" class="btn btn-outline-light">Cerrar sesión</a>
                     <?php else: ?>
                         <a href="login.php" class="btn btn-outline-light">

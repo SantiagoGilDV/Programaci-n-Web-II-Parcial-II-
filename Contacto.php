@@ -7,8 +7,10 @@ $db = "musynf";
 $conn = new mysqli($host, $user, $pass, $db);
 
 if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-} ?>
+    header("Location: error.php");
+    exit();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -26,50 +28,53 @@ if ($conn->connect_error) {
 
 <body>
 
- <?php
-session_start(); 
-$conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
-?>
-<header>
-    <nav class="navbar navbar-expand-lg" style="background-color: <?php echo $conf['Color_Primario']; ?>;">
-        <div id="menu-nav"> 
+    <?php
+    session_start();
+    $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
+    ?>
+    <header>
+        <nav class="navbar navbar-expand-lg" style="background-color: <?php echo $conf['Color_Primario']; ?>;">
+            <div id="menu-nav">
 
-            <div class="d-flex align-items-center">
-                <a class="link navbar-brand d-flex align-items-center me-3" href="index.php">
-                    <img src="<?php echo $conf['Logo']; ?>" width="45" style="margin-right:10px;">
-                    <h1 style="font-size:30px; margin:0;"><?php echo $conf['Nombre_Sitio']; ?></h1>
-                </a>
-
-                <a href="Sobre_Nosotros.php" class="btn btn-outline-light" style="height:40px; margin-left:10px;">
-                    Sobre Nosotros
-                </a>
-                <a href="contacto.php" class="btn btn-outline-light" style="height:40px;">
-                    Contacto
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-                <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
-                    <span class="navbar-text text-white me-3">
-                        Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
-                    </span>
-                    <a href="logout.php" class="btn btn-outline-light">Cerrar sesión</a>
-                <?php else: ?>
-                    <a href="login.php" class="btn btn-outline-light">
-                        Login
+                <div class="d-flex align-items-center">
+                    <a class="link navbar-brand d-flex align-items-center me-3" href="index.php">
+                        <img src="<?php echo $conf['Logo']; ?>" width="45" style="margin-right:10px;">
+                        <h1 style="font-size:30px; margin:0;"><?php echo $conf['Nombre_Sitio']; ?></h1>
                     </a>
-                <?php endif; ?>
-            </div>
 
-        </div>
-    </nav>
-</header>
+                    <a href="Sobre_Nosotros.php" class="btn btn-outline-light" style="height:40px; margin-left:10px;">
+                        Sobre Nosotros
+                    </a>
+                    <a href="contacto.php" class="btn btn-outline-light" style="height:40px;">
+                        Contacto
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                    <?php if (isset($_SESSION['Nombre_Usuario'])): ?>
+                        <span class="navbar-text text-white me-3">
+                            Hola, <?php echo htmlspecialchars($_SESSION['Nombre_Usuario']); ?>
+                        </span>
+                        <a href="Perfil.php" class="btn btn-outline-light me-2">
+                            Editar perfil
+                        </a>
+                        <a href="logout.php" class="btn btn-outline-light">Cerrar sesión</a>
+                    <?php else: ?>
+                        <a href="login.php" class="btn btn-outline-light">
+                            Login
+                        </a>
+                    <?php endif; ?>
+                </div>
+
+            </div>
+        </nav>
+    </header>
 
     <main class="main-center">
         <div class="contact-container">
             <h2>Formulario de Contacto</h2>
 
-            <form action= "Confirmacion.php" method="POST">
+            <form action="Confirmacion.php" method="POST">
 
                 <label class="form-label">Nombre completo</label>
                 <input type="text" class="form-control" name="nombre" required>
@@ -99,4 +104,5 @@ $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

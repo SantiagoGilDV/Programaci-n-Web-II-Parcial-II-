@@ -1,4 +1,3 @@
-/* Mismo estilo base que tu login.css */
 body {
     background-color: #121212;
     font-family: Arial, sans-serif;
@@ -10,7 +9,7 @@ body {
     margin: 0;
 }
 
-/* Caja tipo "login-container" */
+
 .bienvenida-container {
     width: 420px;
     padding: 30px;
@@ -20,7 +19,7 @@ body {
     text-align: center;
 }
 
-/* Título como el h2 del login */
+/* Título*/
 .bienvenida-container h2 {
     color: #1abc54;
     margin-bottom: 10px;
@@ -34,7 +33,7 @@ body {
     font-size: 16px;
 }
 
-/* Links como botones (sin JS) */
+/* Links como botones */
 .bienvenida-container a {
     display: block;
     width: 100%;
@@ -48,12 +47,11 @@ body {
     transition: background-color 0.2s ease;
 }
 
-/* Hover igual que tu button:hover */
 .bienvenida-container a:hover {
     background-color: #159e44;
 }
 
-/* Botón secundario (opcional) */
+
 .bienvenida-container a.secundario {
     background-color: #2c2c2c;
     border: 1px solid #1abc54;

@@ -4,10 +4,15 @@ require_once "Conexion.php";
 
 $esAdmin = (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin');
 $hayUser = (isset($_SESSION['Nombre_Usuario']) || isset($_SESSION['usuario']));
-if (!$esAdmin || !$hayUser) die("Acceso denegado");
+if (!$esAdmin || !$hayUser) {
+    header("Location: error.php");
+    exit();
+}
 
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-if ($id <= 0) die("ID inválido");
+
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+if ($id <= 0)
+    die("ID inválido");
 
 $stmt = $conn->prepare("DELETE FROM artista WHERE Id = ?");
 $stmt->bind_param("i", $id);
