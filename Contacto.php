@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conf = $conn->query("SELECT * FROM header LIMIT 1")->fetch_assoc();
-$esAdmin = (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin');
+$esAdmin = (isset($_SESSION['Nombre_Usuario']) && $_SESSION['usuario'] === 'admin');
 ?>
 
 <!DOCTYPE html>
