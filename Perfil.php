@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "Conexion.php";
+$esAdmin = (isset($_SESSION['Nombre_Usuario']) && $_SESSION['usuario'] === 'admin');
 
 if (!isset($_SESSION['user_id']) && !isset($_SESSION['id_usuario'])) {
     header("Location: login.php");
@@ -15,8 +16,9 @@ $stmt->bind_param("i", $userId);
 $stmt->execute();
 $u = $stmt->get_result()->fetch_assoc();
 
-if (!$u) {
-    die("Usuario no encontrado.");
+if (!$u || $esAdmin) {
+header("Location: error.php");
+    exit();
 }
 
 $mensaje = "";
